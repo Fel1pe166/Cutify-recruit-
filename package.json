@@ -1,0 +1,17 @@
+{
+  "name": "cutify-recruitment",
+  "version": "1.1.1",
+  "private": true,
+  "description": "Cutify Community - Plataforma de Recrutamento para Vercel",
+  "engines": {
+    "node": "26.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check 'api/[...path].js' && node --check test/smoke.test.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

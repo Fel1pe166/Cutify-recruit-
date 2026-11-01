@@ -1,0 +1,66 @@
+CUTIFY COMMUNITY — PACOTE PARA VERCEL
+====================================
+
+O QUE FOI REVISADO E CORRIGIDO
+- Projeto organizado na raiz do ZIP (não há pasta externa envolvendo os arquivos).
+- Node.js fixado em 26.x, compatível com o runtime de Functions da Vercel.
+- A API Express é exportada como função serverless em api/[...path].js; não usa app.listen na Vercel.
+- A página inicial é servida como arquivo estático na raiz; /admin é reescrito para admin.html.
+- Respostas da API não são armazenadas em cache.
+- Tratamento explícito de JSON inválido, corpo muito grande e rotas de API inexistentes.
+- Cookies HttpOnly, SameSite=Lax, assinatura HMAC, expiração de 8 horas e Secure no ambiente Vercel.
+- Leitura/gravação Redis REST com timeout e bloqueio distribuído para evitar sobrescrita simultânea das candidaturas.
+- Validação do ID Discord também no servidor.
+- Mantidos o formulário, o painel, as rotas existentes, o webhook Discord e o formato de dados já usado.
+- Adicionados testes automatizados de smoke test (test/smoke.test.js).
+
+ARQUIVOS PRINCIPAIS
+- index.html: formulário público.
+- admin.html: painel administrativo.
+- server.js: API Express.
+- api/[...path].js: entrada serverless da API na Vercel.
+- vercel.json: roteamento e duração da Function.
+- .env.example: modelo das variáveis de ambiente.
+- test/smoke.test.js: testes básicos da API.
+
+VARIÁVEIS DE AMBIENTE (Vercel > Project > Settings > Environment Variables)
+Obrigatórias para o painel:
+  ADMIN_USER                  Usuário administrativo (não use o padrão admin em produção)
+  ADMIN_PASS                  Senha forte e exclusiva
+  SESSION_SECRET              Segredo aleatório com pelo menos 32 caracteres
+
+Obrigatórias para persistência das candidaturas:
+  UPSTASH_REDIS_REST_URL      REST URL do banco Redis Upstash
+  UPSTASH_REDIS_REST_TOKEN    REST token do mesmo banco Upstash
+
+Opcional:
+  WEBHOOK_URL                 URL de um webhook de canal Discord para receber candidaturas
+
+Gere um segredo seguro localmente com:
+  openssl rand -base64 48
+
+Não compartilhe nem coloque valores reais no GitHub ou neste ZIP. Cadastre as variáveis separadamente na Vercel para Production e, se necessário, Preview. Depois de alterar variáveis, faça um novo deploy.
+
+PUBLICAÇÃO
+1. Extraia o ZIP. Os arquivos package.json, vercel.json, index.html e server.js devem ficar diretamente na raiz do repositório GitHub.
+2. Importe o repositório na Vercel. Root Directory: ./ (raiz do repositório).
+3. Framework Preset: Other. Build Command: deixe vazio (ou use npm run check como verificação separada). Output Directory: deixe vazio.
+4. Cadastre as variáveis acima. Crie o banco no Upstash e copie a REST URL e o REST token correspondentes.
+5. Configure o webhook Discord se desejar receber notificações. WEBHOOK_URL é um webhook de canal; não é um bot token nem configura OAuth/Login pelo Discord.
+6. Publique e valide /, /admin e /api/health.
+
+RESULTADOS ESPERADOS
+- GET /: página pública Cutify.
+- GET /admin: painel e formulário de login.
+- GET /api/health: database=connected quando as credenciais Redis forem válidas; not_configured quando ausentes; 503 quando Redis estiver configurado mas indisponível.
+- POST /api/candidaturas: grava no Redis e retorna o identificador; retorna erro explícito se a persistência falhar.
+
+TESTES LOCAIS
+  npm install
+  npm run check
+  npm test
+
+O runtime Node.js 26 da Vercel está disponível para Builds e Functions. Para deploy com Vercel CLI usando Node 26, use CLI 65.8.0 ou superior.
+
+LIMITES DA VALIDAÇÃO DESTE PACOTE
+O ambiente de revisão não conseguiu concluir npm install (acesso ao registry indisponível/timeout), portanto os testes HTTP automatizados que dependem do Express não foram executados aqui. A sintaxe JavaScript e a estrutura JSON foram verificadas. A conexão real com Upstash e o envio real ao Discord dependem das variáveis e serviços da sua conta e precisam ser verificados após configurar o projeto na Vercel.
