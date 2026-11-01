@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cutify Community - Recrutamento Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+  :root {
+    --bg: #000000;
+    --bg-2: #08080a;
+    --surface: #101014;
+    --surface-2: #16161b;
+    --surface-3: #1d1d24;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #f4f4f6;
+    --muted: #8a8a93;
+    --muted-2: #5f5f68;
+    --accent: #ffffff;
+    --danger: #e04848;
+    --warn: #d6a44a;
+    --success: #4cc27a;
+    --glow: 0 0 60px rgba(255,255,255,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    background-image:
+      radial-gradient(900px 500px at 50% -10%, rgba(255,255,255,0.06), transparent 70%),
+      radial-gradient(700px 400px at 90% 90%, rgba(255,255,255,0.03), transparent 70%);
+    background-attachment: fixed;
+  }
+  ::selection { background: #fff; color: #000; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; width: 100%; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(1160px, calc(100% - 24px));
+    background: rgba(15,15,18,0.72);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 10px 18px; height: 62px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 100;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .nav-logo-img { width: 34px; height: 34px; border-radius: 9px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-img img { width: 100%; height: 100%; object-fit: cover; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { padding: 8px 14px; border-radius: 9px; color: var(--muted); font-size: 0.86rem; font-weight: 500; transition: 0.2s; }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .nav-cta {
+    padding: 9px 18px; border-radius: 10px; background: #fff; color: #000;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em;
+    transition: 0.2s; border: 1px solid #fff;
+  }
+  .nav-cta:hover { background: transparent; color: #fff; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; }
+  .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .nav-mobile {
+    display: none; position: fixed; top: 88px; left: 12px; right: 12px;
+    background: rgba(15,15,18,0.96); backdrop-filter: blur(20px);
+    border: 1px solid var(--border); border-radius: 16px;
+    flex-direction: column; padding: 12px; gap: 4px; z-index: 99;
+  }
+  .nav-mobile a { padding: 12px 14px; border-radius: 10px; color: var(--text); font-size: 0.92rem; }
+  .nav-mobile a:hover { background: rgba(255,255,255,0.05); }
+
+  /* HERO */
+  #hero { padding: 160px 0 100px; position: relative; overflow: hidden; }
+  #hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+  }
+  .hero-inner { position: relative; z-index: 2; text-align: center; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.03);
+    color: var(--muted); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 28px;
+  }
+  .hero-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255,255,255,0.9); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .hero-mascot {
+    width: 148px; height: 148px; margin: 0 auto 32px;
+    border-radius: 50%; padding: 4px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05) 60%, rgba(255,255,255,0.02));
+    box-shadow: 0 0 60px rgba(255,255,255,0.15), 0 30px 80px -20px rgba(0,0,0,0.9);
+    position: relative;
+  }
+  .hero-mascot::after {
+    content: ""; position: absolute; inset: -30px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+    z-index: -1;
+  }
+  .hero-mascot img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    font-weight: 700; line-height: 1.02;
+    letter-spacing: -0.035em; margin-bottom: 20px;
+    background: linear-gradient(180deg, #ffffff 30%, #9a9aa3 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub { color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.15rem); max-width: 560px; margin: 0 auto 40px; line-height: 1.6; }
+  .hero-btns { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    padding: 15px 28px; border-radius: 12px; border: 1px solid #fff;
+    background: #fff; color: #000; font-weight: 700; font-size: 0.86rem;
+    letter-spacing: 0.06em; text-transform: uppercase; transition: 0.25s;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary:hover { background: transparent; color: #fff; transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 15px 28px; border-radius: 12px; border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.02); color: var(--text);
+    font-weight: 600; font-size: 0.86rem; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: 0.25s; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: #fff; transform: translateY(-1px); }
+
+  /* SECTIONS */
+  .section { padding: 100px 0; scroll-margin-top: 100px; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 100px;
+    border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.02);
+    color: var(--muted); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 40%, #8a8a93 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+  /* OBJECTIVE */
+  .objective-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .objective-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 24px;
+    transition: 0.25s;
+  }
+  .objective-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .objective-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; margin-bottom: 18px; font-size: 1.05rem;
+  }
+  .objective-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+  .objective-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* CARGOS */
+  .cargos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
+  .cargo-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 26px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .cargo-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    opacity: 0; transition: 0.3s;
+  }
+  .cargo-card:hover { border-color: var(--border-strong); transform: translateY(-3px); background: var(--surface-2); }
+  .cargo-card:hover::before { opacity: 1; }
+  .cargo-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.1rem;
+  }
+  .cargo-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; }
+  .cargo-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+  .cargo-extra { color: var(--muted-2); font-size: 0.78rem; border-top: 1px solid var(--border); padding-top: 12px; }
+  .cargo-extra strong { color: var(--text); font-weight: 600; }
+
+  /* FORM */
+  .form-wrap { max-width: 820px; margin: 0 auto; }
+  .form-card {
+    background: var(--surface); border: 1px solid var(--border-strong);
+    border-radius: 22px; padding: 38px;
+    box-shadow: var(--glow);
+  }
+  .steps-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 28px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .step-item { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .step-num {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: transparent; color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 700;
+    transition: 0.3s;
+  }
+  .step-label { color: var(--muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .step-item.active .step-num { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+  .step-item.active .step-label { color: var(--text); }
+  .step-item.done .step-num { background: rgba(255,255,255,0.15); color: #fff; border-color: var(--border-strong); }
+  .step-item.done .step-label { color: var(--text); }
+  .step-divider { width: 20px; height: 1px; background: var(--border); flex-shrink: 0; }
+
+  .progress-track { width: 100%; height: 3px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-bottom: 28px; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #fff, rgba(255,255,255,0.6)); border-radius: 3px; transition: width 0.4s ease; }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .step-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 6px; }
+  .step-desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 24px; }
+  .form-grid { display: flex; flex-direction: column; gap: 14px; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field-label {
+    font-size: 0.76rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    display: block;
+  }
+  .input-field {
+    width: 100%; background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border); border-radius: 11px;
+    padding: 13px 15px; font-family: inherit; font-size: 0.9rem;
+    color: var(--text); transition: 0.2s;
+  }
+  .input-field::placeholder { color: var(--muted-2); }
+  .input-field:focus {
+    outline: none; border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+  }
+  textarea.input-field { resize: vertical; min-height: 84px; line-height: 1.55; }
+  select.input-field { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 40px; cursor: pointer; }
+  select.input-field option { background: #111; color: #fff; }
+  .input-field.invalid { border-color: var(--danger); background: rgba(224,72,72,0.05); }
+  .field-help { color: var(--muted-2); font-size: 0.72rem; margin-top: 5px; }
+
+  .review-box { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .review-row { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+  .review-row:last-child { border-bottom: none; }
+  .review-key { color: var(--muted); font-weight: 500; flex-shrink: 0; }
+  .review-val { color: var(--text); text-align: right; word-break: break-word; }
+  .review-group-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    margin: 18px 0 6px;
+  }
+  .terms-check { display: flex; gap: 12px; padding: 16px; border: 1px solid var(--border-strong); border-radius: 12px; background: rgba(255,255,255,0.02); margin-bottom: 10px; cursor: pointer; align-items: flex-start; }
+  .terms-check input { margin-top: 2px; accent-color: #fff; flex-shrink: 0; width: 16px; height: 16px; }
+  .terms-check span { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+  .terms-check span strong { color: var(--text); }
+
+  .form-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .btn-secondary {
+    padding: 13px 24px; border-radius: 11px;
+    border: 1px solid var(--border-strong); background: transparent;
+    color: var(--text); font-weight: 600; font-size: 0.82rem;
+    letter-spacing: 0.05em; text-transform: uppercase; transition: 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.05); }
+  .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-submit {
+    padding: 14px 30px; border-radius: 11px;
+    border: 1px solid #fff; background: #fff;
+    color: #000; font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.06em; text-transform: uppercase; transition: 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-left: auto;
+  }
+  .btn-submit:hover { background: transparent; color: #fff; }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .success-box {
+    text-align: center; padding: 40px 20px;
+    display: none;
+  }
+  .success-box.visible { display: block; animation: fadeIn 0.4s ease; }
+  .success-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 1.6rem; color: #fff;
+    box-shadow: 0 0 40px rgba(255,255,255,0.1);
+  }
+  .success-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+  .success-box p { color: var(--muted); font-size: 0.94rem; max-width: 480px; margin: 0 auto 20px; line-height: 1.6; }
+  .success-id {
+    display: inline-block; padding: 10px 20px; border-radius: 10px;
+    border: 1px solid var(--border-strong); background: rgba(255,255,255,0.03);
+    font-family: 'Space Grotesk', monospace; font-size: 0.95rem;
+    letter-spacing: 0.1em; margin-bottom: 24px;
+  }
+  .success-id span { color: var(--muted); font-size: 0.75rem; display: block; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 50px 0 26px; margin-top: 80px; background: rgba(255,255,255,0.01); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+  .footer-brand p { color: var(--muted); font-size: 0.86rem; line-height: 1.7; margin-top: 14px; max-width: 340px; }
+  .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: var(--text); font-size: 0.86rem; transition: 0.2s; }
+  .footer-col ul a:hover { color: var(--muted); }
+  .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding: 22px 28px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { color: var(--muted-2); font-size: 0.76rem; }
+  .social-links { display: flex; gap: 8px; }
+  .social-link { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.2s; }
+  .social-link:hover { background: #fff; color: #000; border-color: #fff; }
+
+  .toast {
+    position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(120px);
+    background: var(--surface-2); border: 1px solid var(--border-strong);
+    padding: 12px 22px; border-radius: 60px; font-size: 0.85rem;
+    z-index: 500; opacity: 0; transition: 0.35s;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 20px 60px -10px rgba(0,0,0,0.8);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  .toast.success { border-left: 3px solid var(--success); }
+  .toast.error { border-left: 3px solid var(--danger); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .objective-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .form-card { padding: 26px; }
+  }
+  @media (max-width: 560px) {
+    .container { padding: 0 18px; }
+    .section { padding: 70px 0; }
+    .row-2 { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { padding: 22px 18px 0; }
+    .form-nav { flex-direction: column-reverse; }
+    .btn-submit, .btn-secondary { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-img"><img src="https://i.postimg.cc/VkbH3p7m/IMG-20261031-WA0010.jpg" alt="Cutify" /></div>
+    CUTIFY
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="scrollToSec('objetivo')">Sobre</a></li>
+    <li><a onclick="scrollToSec('cargos')">Cargos</a></li>
+    <li><a onclick="scrollToSec('formulario')">Inscricao</a></li>
+  </ul>
+  <a class="nav-cta" onclick="scrollToSec('formulario')">INSCREVER-SE</a>
+  <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a onclick="scrollToSec('objetivo'); closeMobile()">Sobre</a>
+  <a onclick="scrollToSec('cargos'); closeMobile()">Cargos</a>
+  <a onclick="scrollToSec('formulario'); closeMobile()">Inscricao</a>
+</div>
+
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="hero-tag"><span class="dot"></span> Recrutamento Aberto - 2026</div>
+    <div class="hero-mascot">
+      <img src="https://i.postimg.cc/VkbH3p7m/IMG-20261031-WA0010.jpg" alt="Mascote Cutify" />
+    </div>
+    <h1 class="hero-title">RECRUTAMENTO OFICIAL</h1>
+    <p class="hero-sub">Faça parte da equipe que está construindo algo maior. Mais que um servidor, uma comunidade em crescimento.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollToSec('formulario')">
+        <i class="fa-solid fa-paper-plane"></i> Inscrever-se Agora
+      </button>
+      <button class="btn-ghost" onclick="scrollToSec('cargos')">
+        <i class="fa-solid fa-layer-group"></i> Conhecer os Cargos
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="objetivo" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="badge"><i class="fa-solid fa-bullseye"></i> Objetivo</div>
+      <h2 class="section-title">Por que estamos recrutando</h2>
+      <p class="section-sub">A Cutify Community está em expansão e busca talentos comprometidos para fortalecer nossa equipe e elevar a experiência de toda a comunidade.</p>
+    </div>
+    <div class="objective-grid reveal">
+      <div class="objective-card">
+        <div class="objective-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>Equipe Dedicada</h3>
+        <p>Buscamos membros dispostos a contribuir de verdade, com responsabilidade e postura profissional em cada função.</p>
+      </div>
+      <div class="objective-card">
+        <div class="objective-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+        <h3>Crescimento Real</h3>
+        <p>Voce fara parte de um projeto em evolucao constante, com espaco para desenvolver habilidades e crescer junto.</p>
+      </div>
+      <div class="objective-card">
+        <div class="objective-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Ambiente Organizado</h3>
+        <p>Valorizamos hierarquia clara, respeito mutuo e um ambiente estruturado para que todos desempenhem seu melhor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cargos" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="badge"><i class="fa-solid fa-briefcase"></i> Vagas</div>
+      <h2 class="section-title">Cargos Disponíveis</h2>
+      <p class="section-sub">Confira as funções abertas. Cada uma possui responsabilidades e requisitos próprios.</p>
+    </div>
+    <div class="cargos-grid reveal">
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-crown"></i></div>
+        <h3>Administrador</h3>
+        <p>Gestao completa do servidor, decisoes estrategicas e supervisao geral da equipe.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> gerenciar equipe, definir regras e resolver casos criticos.<br/><br/><strong>Requisitos:</strong> experiencia previa em administracao e maturidade.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Moderador</h3>
+        <p>Fiscalizacao dos canais, aplicacao de punicoes e manutencao da ordem.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> monitorar chats, aplicar advertencias e reportar ocorrencias.<br/><br/><strong>Requisitos:</strong> imparcialidade e boa comunicacao.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-headset"></i></div>
+        <h3>Suporte</h3>
+        <p>Atendimento direto aos membros, resolucao de duvidas e suporte em tickets.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> responder tickets, orientar novos membros e acolher a comunidade.<br/><br/><strong>Requisitos:</strong> paciencia, empatia e clareza.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-film"></i></div>
+        <h3>Editor</h3>
+        <p>Producao e edicao de conteudos em video para redes e canais da comunidade.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> editar videos, aplicar efeitos e entregar materiais no prazo.<br/><br/><strong>Requisitos:</strong> dominio de ferramentas de edicao.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-palette"></i></div>
+        <h3>Designer</h3>
+        <p>Criacao de artes, banners, thumbnails e identidade visual da comunidade.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> produzir pecas graficas e manter consistencia visual.<br/><br/><strong>Requisitos:</strong> portfolio e dominio de ferramentas de design.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <h3>Divulgacao</h3>
+        <p>Promocao do servidor em outras plataformas e comunidades parceiras.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> criar estrategias de divulgacao e trazer novos membros.<br/><br/><strong>Requisitos:</strong> networking e proatividade.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>Desenvolvedor</h3>
+        <p>Desenvolvimento de bots, automacoes e ferramentas internas da Cutify.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> criar e manter sistemas internos e bots.<br/><br/><strong>Requisitos:</strong> experiencia com programacao e APIs.</div>
+      </div>
+
+      <div class="cargo-card">
+        <div class="cargo-icon"><i class="fa-solid fa-plus"></i></div>
+        <h3>Outros</h3>
+        <p>Tem outra habilidade que pode agregar? Candidate-se para uma funcao personalizada.</p>
+        <div class="cargo-extra"><strong>Responsabilidades:</strong> definidas conforme a habilidade apresentada.<br/><br/><strong>Requisitos:</strong> demonstrar valor real para a equipe.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="formulario" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="badge"><i class="fa-solid fa-file-signature"></i> Candidatura</div>
+      <h2 class="section-title">Formulário de Inscrição</h2>
+      <p class="section-sub">Preencha as etapas com atencao. Leva cerca de 10 minutos e suas respostas sao salvas automaticamente.</p>
+    </div>
+
+    <div class="form-wrap reveal">
+      <div class="form-card">
+        <div id="formRoot">
+          <div class="steps-bar">
+            <div class="step-item active" data-step="1">
+              <span class="step-num">1</span>
+              <span class="step-label">Pessoal</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-step="2">
+              <span class="step-num">2</span>
+              <span class="step-label">Cargo</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-step="3">
+              <span class="step-num">3</span>
+              <span class="step-label">Perguntas</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" data-step="4">
+              <span class="step-num">4</span>
+              <span class="step-label">Revisao</span>
+            </div>
+          </div>
+
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+          <form id="staffForm" novalidate>
+
+            <!-- STEP 1 -->
+            <div class="step-panel active" data-panel="1">
+              <div class="step-title">Informacoes Pessoais</div>
+              <div class="step-desc">Dados basicos para identificacao e contato.</div>
+              <div class="form-grid">
+                <div>
+                  <label class="field-label" for="nome">Nome Completo</label>
+                  <input class="input-field" id="nome" type="text" maxlength="100" placeholder="Seu nome completo" autocomplete="name" />
+                </div>
+                <div class="row-2">
+                  <div>
+                    <label class="field-label" for="idade">Idade</label>
+                    <input class="input-field" id="idade" type="number" min="13" max="100" placeholder="Ex: 17" inputmode="numeric" />
+                    <div class="field-help">Idade minima: 13 anos.</div>
+                  </div>
+                  <div>
+                    <label class="field-label" for="pais">Pais</label>
+                    <input class="input-field" id="pais" type="text" maxlength="50" placeholder="Ex: Brasil" autocomplete="country-name" />
+                  </div>
+                </div>
+                <div class="row-2">
+                  <div>
+                    <label class="field-label" for="discord_user">Usuario do Discord</label>
+                    <input class="input-field" id="discord_user" type="text" maxlength="50" placeholder="Ex: usuario#0000 ou @usuario" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="discord_id">ID do Discord</label>
+                    <input class="input-field" id="discord_id" type="text" maxlength="25" placeholder="Somente numeros" inputmode="numeric" />
+                    <div class="field-help">Clique com botao direito no seu perfil -> Copiar ID.</div>
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label" for="fuso">Fuso Horario</label>
+                  <input class="input-field" id="fuso" type="text" maxlength="50" placeholder="Ex: GMT-3 (Brasilia)" />
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-panel" data-panel="2">
+              <div class="step-title">Escolha do Cargo</div>
+              <div class="step-desc">Informe a funcao desejada e sua disponibilidade.</div>
+              <div class="form-grid">
+                <div>
+                  <label class="field-label" for="cargo_principal">Cargo Desejado</label>
+                  <select class="input-field" id="cargo_principal">
+                    <option value="">Selecione um cargo</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="moderador">Moderador</option>
+                    <option value="suporte">Suporte</option>
+                    <option value="editor">Editor</option>
+                    <option value="designer">Designer</option>
+                    <option value="divulgacao">Divulgacao</option>
+                    <option value="desenvolvedor">Desenvolvedor</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+                <div id="outroWrap" style="display:none">
+                  <label class="field-label" for="cargo_outro">Especifique o Cargo</label>
+                  <input class="input-field" id="cargo_outro" type="text" maxlength="120" placeholder="Descreva o cargo desejado" />
+                </div>
+                <div>
+                  <label class="field-label" for="cargo_secundario">Segundo Cargo de Interesse (opcional)</label>
+                  <select class="input-field" id="cargo_secundario">
+                    <option value="">Nenhum</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="moderador">Moderador</option>
+                    <option value="suporte">Suporte</option>
+                    <option value="editor">Editor</option>
+                    <option value="designer">Designer</option>
+                    <option value="divulgacao">Divulgacao</option>
+                    <option value="desenvolvedor">Desenvolvedor</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label" for="experiencia">Experiencia Anterior</label>
+                  <textarea class="input-field" id="experiencia" rows="3" maxlength="2000" placeholder="Descreva experiencias anteriores em comunidades, servidores ou projetos."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="tempo_disponivel">Tempo Disponivel</label>
+                  <input class="input-field" id="tempo_disponivel" type="text" maxlength="100" placeholder="Ex: 4 horas por dia, fins de semana" />
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step-panel" data-panel="3">
+              <div class="step-title">Perguntas</div>
+              <div class="step-desc">Responda com sinceridade. Isso nos ajuda a conhecer voce.</div>
+              <div class="form-grid">
+                <div>
+                  <label class="field-label" for="q1">1. Por que deseja entrar na equipe da Cutify?</label>
+                  <textarea class="input-field" id="q1" rows="3" maxlength="2000" placeholder="Descreva sua motivacao."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q2">2. Quais sao suas principais habilidades?</label>
+                  <textarea class="input-field" id="q2" rows="3" maxlength="2000" placeholder="Ex: comunicacao, design, programacao..."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q3">3. Voce ja trabalhou em alguma equipe?</label>
+                  <textarea class="input-field" id="q3" rows="3" maxlength="2000" placeholder="Descreva sua experiencia em equipe."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q4">4. Como lidaria com conflitos entre membros?</label>
+                  <textarea class="input-field" id="q4" rows="3" maxlength="2000" placeholder="Explique sua abordagem."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q5">5. Como reagiria se um membro da equipe desrespeitasse as regras?</label>
+                  <textarea class="input-field" id="q5" rows="3" maxlength="2000" placeholder="Descreva sua reacao."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q6">6. Por que deveriamos escolher voce?</label>
+                  <textarea class="input-field" id="q6" rows="3" maxlength="2000" placeholder="Argumente sua candidatura."></textarea>
+                </div>
+                <div>
+                  <label class="field-label" for="q7">7. O que pretende melhorar na Cutify Community?</label>
+                  <textarea class="input-field" id="q7" rows="3" maxlength="2000" placeholder="Ideias e sugestoes."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-panel" data-panel="4">
+              <div class="step-title">Revisao e Confirmacao</div>
+              <div class="step-desc">Revise suas respostas antes de enviar. Apos o envio voce recebera um identificador unico.</div>
+              <div id="reviewBox"></div>
+              <label class="terms-check">
+                <input type="checkbox" id="aceiteTermos" />
+                <span>Aceito os <strong>termos do recrutamento</strong> da Cutify Community e declaro que todas as informacoes fornecidas sao verdadeiras e completas.</span>
+              </label>
+              <label class="terms-check">
+                <input type="checkbox" id="aceiteVeracidade" />
+                <span>Estou ciente de que <strong>informacoes falsas</strong> resultarao em desclassificacao automatica e possiveis sancoes.</span>
+              </label>
+            </div>
+
+            <div class="form-nav">
+              <button type="button" class="btn-secondary" id="btnPrev" disabled>
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+              </button>
+              <button type="button" class="btn-submit" id="btnNext">
+                Proximo <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="success-box" id="successBox">
+          <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+          <h3>Candidatura Enviada</h3>
+          <p>Sua candidatura foi recebida com sucesso. A equipe da Cutify Community ira analisar suas respostas. Aguarde o contato pelo Discord.</p>
+          <div class="success-id"><span>Identificador</span><span id="successId">-</span></div>
+          <div>
+            <button class="btn-primary" onclick="resetFlow()">
+              <i class="fa-solid fa-rotate-right"></i> Nova Candidatura
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-img"><img src="https://i.postimg.cc/VkbH3p7m/IMG-20261031-WA0010.jpg" alt="Cutify" /></div>
+          CUTIFY
+        </div>
+        <p>Mais que um servidor, uma comunidade em crescimento. Recrutamento oficial para talentos que desejam construir algo maior junto conosco.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegacao</h4>
+        <ul>
+          <li><a onclick="scrollToSec('objetivo')">Sobre</a></li>
+          <li><a onclick="scrollToSec('cargos')">Cargos</a></li>
+          <li><a onclick="scrollToSec('formulario')">Inscricao</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Comunidade</h4>
+        <ul>
+          <li><a href="#" id="discordFooter">Discord Oficial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2026 Cutify Community. Todos os direitos reservados.</p>
+      <div class="social-links">
+        <a class="social-link" id="discordSocial" title="Discord"><i class="fa-brands fa-discord"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script>
+  const DRAFT_KEY = 'cutify_draft_v1';
+  const FIELD_IDS = ['nome','idade','discord_user','discord_id','pais','fuso','cargo_principal','cargo_secundario','cargo_outro','experiencia','tempo_disponivel','q1','q2','q3','q4','q5','q6','q7'];
+
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  const $ = id => document.getElementById(id);
+
+  function scrollToSec(id) {
+    const el = $(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+  }
+  function closeMobile() {
+    const m = $('navMobile');
+    const h = $('hamburgerBtn');
+    if (m) m.style.display = 'none';
+    if (h) h.classList.remove('active');
+  }
+  $('hamburgerBtn').addEventListener('click', function () {
+    this.classList.toggle('active');
+    const m = $('navMobile');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  // ---- Draft (localStorage) ----
+  function saveDraft() {
+    const data = {};
+    FIELD_IDS.forEach(id => {
+      const el = $(id);
+      if (el) data[id] = el.value;
+    });
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function loadDraft() {
+    let raw;
+    try { raw = localStorage.getItem(DRAFT_KEY); } catch (e) {}
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw);
+      FIELD_IDS.forEach(id => {
+        const el = $(id);
+        if (el && typeof data[id] === 'string') el.value = data[id];
+      });
+    } catch (e) {}
+  }
+  function clearDraft() {
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+  }
+
+  // ---- Toast ----
+  let toastTimer;
+  function showToast(msg, type) {
+    const t = $('toast');
+    $('toastMsg').textContent = msg;
+    t.className = 'toast ' + (type || '');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 4200);
+  }
+
+  // ---- Step navigation ----
+  function updateSteps() {
+    document.querySelectorAll('.step-item').forEach(el => {
+      const s = parseInt(el.dataset.step, 10);
+      el.classList.remove('active', 'done');
+      if (s === currentStep) el.classList.add('active');
+      else if (s < currentStep) el.classList.add('done');
+    });
+    document.querySelectorAll('.step-panel').forEach(el => {
+      const p = parseInt(el.dataset.panel, 10);
+      el.classList.toggle('active', p === currentStep);
+    });
+    $('progressFill').style.width = (((currentStep - 1) / (totalSteps - 1)) * 100) + '%';
+    $('btnPrev').disabled = currentStep === 1;
+    const btn = $('btnNext');
+    if (currentStep === totalSteps) {
+      btn.innerHTML = 'Enviar Candidatura <i class="fa-solid fa-paper-plane"></i>';
+    } else {
+      btn.innerHTML = 'Proximo <i class="fa-solid fa-arrow-right"></i>';
+    }
+    if (currentStep === totalSteps) buildReview();
+  }
+
+  function validateStep(step) {
+    const required = {
+      1: ['nome','idade','discord_user','discord_id','pais','fuso'],
+      2: ['cargo_principal','experiencia','tempo_disponivel'],
+      3: ['q1','q2','q3','q4','q5','q6','q7'],
+      4: []
+    };
+    const fields = required[step] || [];
+    let ok = true;
+    fields.forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      if (!el.value.trim()) { el.classList.add('invalid'); ok = false; }
+      else el.classList.remove('invalid');
+    });
+
+    if (step === 1) {
+      const idadeEl = $('idade');
+      const idade = parseInt(idadeEl.value, 10);
+      if (!Number.isInteger(idade) || idade < 13 || idade > 100) {
+        idadeEl.classList.add('invalid'); ok = false;
+      }
+      const didEl = $('discord_id');
+      const did = didEl.value.trim();
+      if (!/^\d{15,25}$/.test(did)) { didEl.classList.add('invalid'); ok = false; }
+      const disc = $('discord_user').value.trim();
+      if (disc.length < 2) { $('discord_user').classList.add('invalid'); ok = false; }
+    }
+
+    if (step === 2) {
+      const cp = $('cargo_principal').value;
+      if (cp === 'outros' && !$('cargo_outro').value.trim()) {
+        $('cargo_outro').classList.add('invalid'); ok = false;
+      }
+    }
+
+    if (step === 4) {
+      if (!$('aceiteTermos').checked || !$('aceiteVeracidade').checked) {
+        ok = false;
+        showToast('Aceite os termos para enviar.', 'error');
+      }
+    }
+
+    if (!ok && step !== 4) showToast('Preencha os campos obrigatorios.', 'error');
+    return ok;
+  }
+
+  $('btnNext').addEventListener('click', async () => {
+    if (!validateStep(currentStep)) return;
+
+    if (currentStep < totalSteps) {
+      currentStep++;
+      updateSteps();
+      return;
+    }
+
+    // Submit
+    const btn = $('btnNext');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Enviando...';
+
+    const payload = {};
+    FIELD_IDS.forEach(id => { const el = $(id); if (el) payload[id] = el.value.trim(); });
+
+    try {
+      const res = await fetch('/api/candidaturas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      clearDraft();
+      $('formRoot').style.display = 'none';
+      $('successId').textContent = data.id;
+      $('successBox').classList.add('visible');
+      window.scrollTo({ top: $('formulario').getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+    } catch (err) {
+      console.error(err);
+      showToast(err.message || 'Erro ao enviar. Tente novamente.', 'error');
+      btn.disabled = false;
+      btn.innerHTML = 'Enviar Candidatura <i class="fa-solid fa-paper-plane"></i>';
+    }
+  });
+
+  $('btnPrev').addEventListener('click', () => {
+    if (currentStep > 1) { currentStep--; updateSteps(); }
+  });
+
+  // ---- Cargo "outros" toggle ----
+  $('cargo_principal').addEventListener('change', () => {
+    const isOther = $('cargo_principal').value === 'outros';
+    $('outroWrap').style.display = isOther ? 'block' : 'none';
+  });
+
+  // ---- Draft listeners ----
+  FIELD_IDS.forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('input', saveDraft);
+  });
+  document.querySelectorAll('select').forEach(el => el.addEventListener('change', saveDraft));
+
+  // ---- Review ----
+  function buildReview() {
+    const labels = {
+      nome: 'Nome', idade: 'Idade', discord_user: 'Discord', discord_id: 'ID Discord',
+      pais: 'Pais', fuso: 'Fuso', cargo_principal: 'Cargo Principal', cargo_secundario: 'Cargo Secundario',
+      cargo_outro: 'Cargo (Outro)', experiencia: 'Experiencia', tempo_disponivel: 'Tempo Disponivel',
+      q1: '1. Motivacao', q2: '2. Habilidades', q3: '3. Equipe', q4: '4. Conflitos',
+      q5: '5. Desrespeito', q6: '6. Escolha', q7: '7. Melhorias'
+    };
+    const groups = [
+      { title: 'Informacoes Pessoais', keys: ['nome','idade','discord_user','discord_id','pais','fuso'] },
+      { title: 'Cargo', keys: ['cargo_principal','cargo_secundario','cargo_outro','experiencia','tempo_disponivel'] },
+      { title: 'Perguntas', keys: ['q1','q2','q3','q4','q5','q6','q7'] }
+    ];
+    const box = $('reviewBox');
+    box.innerHTML = '';
+    groups.forEach(g => {
+      const hasAny = g.keys.some(k => ($(k) && $(k).value.trim()));
+      if (!hasAny) return;
+      const title = document.createElement('div');
+      title.className = 'review-group-title';
+      title.textContent = g.title;
+      box.appendChild(title);
+      g.keys.forEach(k => {
+        const el = $(k);
+        if (!el) return;
+        let val = el.value.trim();
+        if (!val) return;
+        if (k === 'cargo_principal' || k === 'cargo_secundario') {
+          val = el.options[el.selectedIndex].text;
+        }
+        const row = document.createElement('div');
+        row.className = 'review-row';
+        const keyEl = document.createElement('span');
+        keyEl.className = 'review-key';
+        keyEl.textContent = labels[k] || k;
+        const valEl = document.createElement('span');
+        valEl.className = 'review-val';
+        valEl.textContent = val.length > 200 ? val.slice(0, 200) + '...' : val;
+        row.appendChild(keyEl);
+        row.appendChild(valEl);
+        box.appendChild(row);
+      });
+    });
+  }
+
+  function resetFlow() {
+    clearDraft();
+    $('staffForm').reset();
+    FIELD_IDS.forEach(id => { const el = $(id); if (el) el.classList.remove('invalid'); });
+    $('outroWrap').style.display = 'none';
+    $('aceiteTermos').checked = false;
+    $('aceiteVeracidade').checked = false;
+    currentStep = 1;
+    updateSteps();
+    $('successBox').classList.remove('visible');
+    $('formRoot').style.display = 'block';
+    $('btnNext').disabled = false;
+    $('btnNext').innerHTML = 'Proximo <i class="fa-solid fa-arrow-right"></i>';
+    window.scrollTo({ top: $('formulario').getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+  }
+
+  // ---- Init ----
+  loadDraft();
+  if ($('cargo_principal').value === 'outros') $('outroWrap').style.display = 'block';
+  updateSteps();
+
+  // ---- Reveal animations ----
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+  </html>
