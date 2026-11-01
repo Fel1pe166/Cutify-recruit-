@@ -24,6 +24,23 @@ test('arquivos públicos principais existem', () => {
   assert.ok(fs.existsSync(path.join(__dirname, '..', 'vercel.json')));
 });
 
+test('página inicial / entrega o HTML original', async () => {
+  const response = await fetch(`${base}/`);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get('content-type') || '', /text\/html/);
+  assert.match(html, /Cutify/i);
+  assert.doesNotMatch(html, /Rota da API não encontrada/);
+});
+
+test('painel /admin entrega o HTML original', async () => {
+  const response = await fetch(`${base}/admin`);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get('content-type') || '', /text\/html/);
+  assert.match(html, /Cutify/i);
+});
+
 test('health responde sem banco sem fingir conexão', async () => {
   const response = await fetch(`${base}/api/health`);
   const body = await response.json();
